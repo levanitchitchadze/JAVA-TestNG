@@ -1,14 +1,14 @@
 package selenide;
 
 import com.codeborne.selenide.Configuration;
+import com.codeborne.selenide.Selenide;
 import com.codeborne.selenide.SelenideElement;
 import org.testng.annotations.*;
 import org.testng.annotations.Test;
 import org.testng.asserts.SoftAssert;
-import static com.codeborne.selenide.Selenide.$;
-import static com.codeborne.selenide.Selenide.open;
 import org.openqa.selenium.chrome.ChromeOptions;
 import static com.codeborne.selenide.Configuration.*;
+import static com.codeborne.selenide.Selenide.*;
 
 public class RadioButtonTests {
 
@@ -28,18 +28,21 @@ public class RadioButtonTests {
 
     }
 
-    @Test(dependsOnMethods = {"RBT"})
-    public void Checkbox(){
-        $("#checkboxes input:nth-child(3)").click();
+    @AfterMethod
+    public void CloseBrowser(){
+        Selenide.closeWebDriver();
+    }
+
+    @Test(dependsOnMethods = {"CheckboxCheck"},alwaysRun = true)
+    public void RadioButtons(){
+        open("https://demoqa.com/radio-button");
+
+        $("input.custom-control-input").doubleClick();
 
 
         SoftAssert soft = new SoftAssert();
-        SelenideElement noRadio = $("input[type='checkbox']");
-        soft.assertTrue(noRadio.isEnabled());
+        soft.assertFalse($("input#noRadio").isEnabled());
         soft.assertAll();
-
-
-
     }
 
     @Test(dependsOnMethods = {"Checkbox"})
@@ -57,17 +60,28 @@ public class RadioButtonTests {
 
     }
 
+    @Test(dependsOnMethods = {"RBT"})
+    public void Checkbox(){
 
-    @Test(dependsOnMethods = {"CheckboxCheck"})
-    public void RadioButtons(){
-        open("https://demoqa.com/radio-button");
-
-        $("input.custom-control-input").doubleClick();
+        $("#checkboxes input:nth-child(3)").click();
 
 
         SoftAssert soft = new SoftAssert();
-        soft.assertTrue($("input#noRadio").isEnabled());
+        SelenideElement noRadio = $("input[type='checkbox']");
+        soft.assertTrue(noRadio.isEnabled());
         soft.assertAll();
+
+
+
     }
+
+    @Test(enabled = false)
+    public void SkipMethod(){
+        open("https://classroom.google.com/u/1/c/NDQxMDQyNjczODcy/m/NDU2ODM1MjAxODkx/details");
+        $("a[class='vwNuXe JkIgWb QRiHXd MymH0d maXJsd']").click();
+
+    }
+
+
 
 }

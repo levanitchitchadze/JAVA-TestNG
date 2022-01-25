@@ -2,7 +2,7 @@
 
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
 
-<suite name="TestSuite" thread-count="2" parallel="tests" >
+<suite name="TestSuite" thread-count="2" parallel="classes" >
 
     <test name="ChromeTest">
 
@@ -18,6 +18,11 @@
             <class name="selenide.RadioButtonTests">
 
             </class>
+
+
+
+
+
 
         </classes>
 
