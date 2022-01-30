@@ -16,9 +16,9 @@
         <dependency>
             <groupId>com.microsoft.sqlserver</groupId>
             <artifactId>mssql-jdbc</artifactId>
-            <version>8.4.1.jre11</version>
+            <version>9.4.1.jre11</version>
             <scope>system</scope>
-            <systemPath>${project.basedir}/src/main/resources/mssql-jdbc-8.4.1.jre11.jar</systemPath>
+            <systemPath>${project.basedir}/src/main/resources/mssql-jdbc-9.4.1.jre11.jar</systemPath>
         </dependency>
 
         <!-- https://mvnrepository.com/artifact/com.codeborne/selenide -->
